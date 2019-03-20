@@ -1,4 +1,4 @@
-import { CriaCliente, EditaCliente, DeletaCliente } from "./controller/Controler";
+import { CriaCliente, EditaCliente, DeletaCliente, BuscaPorId } from "./controller/Controler";
 import { } from "./controller/Controler";
 
 
@@ -18,12 +18,12 @@ export const AppRoutes = [
         path: "/deletaCliente/:id",
         method: "delete",
         action: DeletaCliente
-    },/*
+    },
     {
         path: "/buscaPorId/:id",
         method: "get",
         action: BuscaPorId
-    },
+    }/*,
     {
         path: "/buscaPorNome/:nome",
         method: "get",

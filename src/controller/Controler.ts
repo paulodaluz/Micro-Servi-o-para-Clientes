@@ -87,3 +87,21 @@ export async function DeletaCliente(request: Request, response: Response) {
 
 };
 
+export async function BuscaPorId(request: Request, response: Response) {
+
+    //Cria uma conexão com o banco
+    const ClientesRepository = getManager().getRepository(Clientes);
+
+    //Procurando no banco de dados e guardando dentro da variavel
+    const dadosCliente = await ClientesRepository.findOne(request.params.id);
+
+    //Caso ocorra algum erro irá retornar o erro padrão para o usuário
+    if (!dadosCliente) {
+        response.status(404).json(new MensagemPadrao("404", "Nenhum cliente foi encontrado, verifique os dados e tente novamente.").erroRetorno());
+        response.end();
+        return;
+    }
+
+    //retorna a loja com o id correspondente
+    response.send(dadosCliente);
+};
