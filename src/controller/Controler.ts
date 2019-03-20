@@ -82,6 +82,7 @@ export async function DeletaCliente(request: Request, response: Response) {
     //Deleta o cliente e retorna uma mensagem de sucesso ao usuário
     await ClientesRepository.delete({ id: request.params.id });
     response.send("Cliente Deletado com Sucesso");
+    console.log("Cliente deletado com sucesso");
 
 };
 
@@ -102,6 +103,7 @@ export async function BuscaPorId(request: Request, response: Response) {
 
     //retorna o cliente com o id correspondente
     response.send(dadosCliente);
+    console.log("Cliente buscado com sucesso");
 };
 
 export async function BuscaPorNome(request: Request, response: Response) {
@@ -123,44 +125,67 @@ export async function BuscaPorNome(request: Request, response: Response) {
 
     //retorna o(s) clientes com o nome correspondente
     response.send(dadosCliente);
+    console.log("Cliente(s) buscado(s) com sucesso");
 };
 
 export async function BuscaPorCPF(request: Request, response: Response) {
-
+    
     //Cria uma conexão com o banco
     const ClientesRepository = getManager().getRepository(Clientes);
-
+    
     //Procurando no banco de dados e guardando dentro da variavel
     const dadosCliente = await ClientesRepository.findOne({where:{ cpf: request.params.cpf }});
-
+    
     //Caso ocorra algum erro irá retornar o erro padrão para o usuário
     if (!dadosCliente) {
         response.status(404).json(new MensagemPadrao("404", "Nenhum cliente foi encontrado, verifique os dados e tente novamente.").erroRetorno());
         response.end();
         return;
     }
-
+    
     //retorna o cliente com o CPF correspondente
     response.send(dadosCliente);
+    console.log("Cliente buscado com sucesso");
 };
 
 export async function BuscaPorRG(request: Request, response: Response) {
-
+    
     //Cria uma conexão com o banco
     const ClientesRepository = getManager().getRepository(Clientes);
-
+    
     //Procurando no banco de dados e guardando dentro da variavel
     const dadosCliente = await ClientesRepository.findOne({ where: { rg: request.params.rg } });
-
+    
     //Caso ocorra algum erro irá retornar o erro padrão para o usuário
     if (!dadosCliente) {
         response.status(404).json(new MensagemPadrao("404", "Nenhum cliente foi encontrado, verifique os dados e tente novamente.").erroRetorno());
         response.end();
         return;
     }
-
+    
     //retorna o cliente com o RG correspondente
     response.send(dadosCliente);
+    console.log("Cliente buscado com sucesso");
+};
+
+export async function BuscaPorGenero(request: Request, response: Response) {
+
+    //Cria uma conexão com o banco
+    const ClientesRepository = getManager().getRepository(Clientes);
+
+    //Procurando no banco de dados e guardanda dentro da variavel
+    const dadosCliente = await ClientesRepository.find({ where: { genero: request.params.genero } });
+
+    //Caso ocorra algum erro irá retornar o erro padrão para o usuário
+    if (dadosCliente.length == 0) {
+        response.status(404).json(new MensagemPadrao("404", "Nenhum cliente foi encontrado, verifique os dados e tente novamente.").erroRetorno());
+        response.end();
+        return;
+    }
+
+    //retorna o(s) clientes com o genero correspondente
+    response.send(dadosCliente);
+    console.log("Cliente(s) buscado(s) com sucesso");
 };
 
 export async function BuscaPorTrabalho(request: Request, response: Response) {
@@ -182,6 +207,7 @@ export async function BuscaPorTrabalho(request: Request, response: Response) {
 
     //retorna o(s) clientes que trabalham na loja correspondente
     response.send(dadosCliente);
+    console.log("Cliente(s) buscado(s) com sucesso");
 };
 
 export async function ListarTodos(request: Request, response: Response) {
@@ -200,8 +226,10 @@ export async function ListarTodos(request: Request, response: Response) {
     }
     //Retorna todos os clientes para o usuário
     response.send(loja);
+    console.log("Cliente(s) listado(s) com sucesso");
 };
 
 /* export async function Redireciona(request: Request, response: Response) {
-    response.redirect(301, '/api-docs')
-};*/
+    response.redirect(301, '/api-docs');
+    console.log("Cliente redirecionado com sucesso");
+}; */

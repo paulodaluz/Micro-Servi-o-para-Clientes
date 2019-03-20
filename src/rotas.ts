@@ -1,5 +1,5 @@
-import { CriaCliente, EditaCliente, DeletaCliente, BuscaPorId, BuscaPorNome } from "./controller/Controler";
-import { BuscaPorCPF, BuscaPorRG, BuscaPorTrabalho, ListarTodos } from "./controller/Controler";
+import { CriaCliente, EditaCliente, DeletaCliente, BuscaPorId, BuscaPorNome, BuscaPorCPF } from "./controller/Controler";
+import { BuscaPorRG, BuscaPorGenero, BuscaPorTrabalho, ListarTodos } from "./controller/Controler";
 
 
 //Todas as rotas da aplicação
@@ -38,6 +38,11 @@ export const AppRoutes = [
         path: "/buscaPorRG/:rg",
         method: "get",
         action: BuscaPorRG
+    },
+    {
+        path: "/buscaPorGenero/:genero",
+        method: "get",
+        action: BuscaPorGenero
     },
     {
         path: "/buscaPorTrabalho",

@@ -8,12 +8,15 @@ export class Clientes {
 
     @Column()
     nome: string;
-
+    
     @Column()
     cpf: string;
-
+    
     @Column()
     rg: string;
+
+    @Column()
+    genero: string;
     
     @Column()
     celular: string;

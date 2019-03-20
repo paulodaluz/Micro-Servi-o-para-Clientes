@@ -3,6 +3,7 @@ CREATE TABLE`clientes`(
     `nome` varchar(255) NOT NULL,
     `cpf` varchar(255) NOT NULL,
     `rg` varchar(255) NOT NULL,
+    `genero` varchar(255) NOT NULL,
     `celular` varchar(255) NOT NULL,
     `endereco` varchar(255) NOT NULL,
     `localDeTrabalho` varchar(255) NOT NULL,
