@@ -51,7 +51,7 @@ export async function EditaCliente(request: Request, response: Response) {
 
     //Encontra o cliente e guarda ele na variavel dadosCliente
     const dadosCliente = await ClientesRepository.findOne(request.params.id);
-    //Atualiza loja
+    //Atualiza o Cliente
     await ClientesRepository.update({ id: request.params.id }, request.body);
 
     //Se o cliente não for encontrado irá retornar o erro padrão ao usuário
@@ -66,4 +66,24 @@ export async function EditaCliente(request: Request, response: Response) {
     console.log("Cliente atualizado com sucesso");
 };
 
+
+export async function DeletaCliente(request: Request, response: Response) {
+
+    //Cria uma conexão com o banco
+    const ClientesRepository = getManager().getRepository(Clientes);
+
+    //Acha o cliente no banco de dados e guarda na variavel dados cliente
+    const dadosCliente = await ClientesRepository.findOne(request.params.id);
+
+    //Se loja não for encontrada irá retornar o erro padrão ao usuário
+    if (!dadosCliente) {
+        response.status(404).json(new MensagemPadrao("404", "Não foi possivel deletar o cliente, verifique os dados e tente novamente.").erroRetorno());
+        response.end();
+        return;
+    }
+    //Deleta o cliente e retorna uma mensagem de sucesso ao usuário
+    await ClientesRepository.delete({ id: request.params.id });
+    response.send("Cliente Deletado com Sucesso");
+
+};
 

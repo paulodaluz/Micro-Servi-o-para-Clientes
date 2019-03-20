@@ -1,4 +1,4 @@
-import { CriaCliente, EditaCliente } from "./controller/Controler";
+import { CriaCliente, EditaCliente, DeletaCliente } from "./controller/Controler";
 import { } from "./controller/Controler";
 
 
@@ -13,12 +13,12 @@ export const AppRoutes = [
         path: "/editaCliente/:id",
         method: "put",
         action: EditaCliente
-    }/*,
+    },
     {
         path: "/deletaCliente/:id",
         method: "delete",
         action: DeletaCliente
-    },
+    },/*
     {
         path: "/buscaPorId/:id",
         method: "get",
