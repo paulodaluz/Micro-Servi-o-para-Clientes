@@ -1,4 +1,4 @@
-import { } from "./controller/Controler";
+import { CriaCliente } from "./controller/Controler";
 import { } from "./controller/Controler";
 
 
@@ -8,7 +8,7 @@ export const AppRoutes = [
         path: "/criaCliente",
         method: "post",
         action: CriaCliente
-    },
+    }/* ,
     {
         path: "/editaCliente/:id",
         method: "put",
@@ -54,5 +54,5 @@ export const AppRoutes = [
         method: "get",
         action: Redireciona
     }
-
+ */
 ];

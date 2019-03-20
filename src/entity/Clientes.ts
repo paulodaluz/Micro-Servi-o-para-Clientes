@@ -24,6 +24,4 @@ export class Clientes {
     @Column()
     localDeTrabalho: string;
 
-
-
 }
