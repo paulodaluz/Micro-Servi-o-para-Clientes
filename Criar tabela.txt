@@ -1,0 +1,10 @@
+CREATE TABLE`clientes`(
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `nome` varchar(255) NOT NULL,
+    `cpf` varchar(255) NOT NULL,
+    `rg` varchar(255) NOT NULL,
+    `celular` varchar(255) NOT NULL,
+    `endereco` varchar(255) NOT NULL,
+    `localDeTrabalho` varchar(255) NOT NULL,
+    PRIMARY KEY(id)
+);
