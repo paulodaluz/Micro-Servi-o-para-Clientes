@@ -1,4 +1,6 @@
-import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
+import 'reflect-metadata'
+import { Entity, PrimaryGeneratedColumn, Column, PrimaryColumn, ManyToOne, JoinColumn} from "typeorm";
+import { ListaLojas } from './Loja';
 
 @Entity()
 export class Clientes {
@@ -27,4 +29,7 @@ export class Clientes {
     @Column()
     localDeTrabalho: string;
 
+    @ManyToOne(type => ListaLojas, ListaLojas => ListaLojas.id)
+    @JoinColumn({ name: 'lojaId' })
+    loja: ListaLojas
 }

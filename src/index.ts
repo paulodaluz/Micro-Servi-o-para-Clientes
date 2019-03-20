@@ -4,14 +4,16 @@ import {Request, Response} from "express";
 import * as express from "express";
 import * as bodyParser from "body-parser";
 import * as swaggerUi from 'swagger-ui-express';
-import {AppRoutes} from "./rotas";
+import { AppRoutesLoja } from "./rotas/LojaRotas";
+import { AppRoutesCliente } from "./rotas/ClienteRotas";
 
 
 //Conectando ao Express para fazer a validação mais pra frente
 var expressValidator = require('express-validator');
 
 //Conectando ao Swagger e guardando em uma váriavel
-const swaggerDocument = require('../Documentacao/swagger.json');
+const swaggerDocumentCliente = require('../Documentacao/swaggerCliente.json');
+const swaggerDocumentLoja = require('../Documentacao/swaggerCliente.json');
 
 //Criando uma conexão com o banco de dados
 createConnection().then(async connection => {
@@ -22,11 +24,18 @@ createConnection().then(async connection => {
     //Validando as informações para criar a loja
     const app = express();
     app.use(bodyParser.json());
-    app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+    app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocumentCliente));
     app.use(expressValidator());
     
     //Registra todas as conexôes apartir de um forEatch
-    AppRoutes.forEach(route => {
+    AppRoutesLoja.forEach(route => {
+        app[route.method](route.path, (request: Request, response: Response, next: Function) => {
+            route.action(request, response)
+                .then(() => next)
+                .catch(err => next(err));
+        });
+    });
+    AppRoutesCliente.forEach(route => {
         app[route.method](route.path, (request: Request, response: Response, next: Function) => {
             route.action(request, response)
                 .then(() => next)

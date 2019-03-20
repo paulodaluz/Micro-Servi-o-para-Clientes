@@ -1,9 +1,9 @@
-import { CriaCliente, EditaCliente, DeletaCliente, BuscaPorId, BuscaPorNome, BuscaPorCPF } from "./controller/Controler";
-import { BuscaPorRG, BuscaPorGenero, BuscaPorTrabalho, ListarTodos, Redireciona } from "./controller/Controler";
+import { CriaCliente, EditaCliente, DeletaCliente, BuscaPorId, BuscaPorNome, BuscaPorCPF } from "../controller/ClienteControler";
+import { BuscaPorRG, BuscaPorGenero, BuscaPorTrabalho, ListarTodos, Redireciona } from "../controller/ClienteControler";
 
 
 //Todas as rotas da aplicação
-export const AppRoutes = [
+export const AppRoutesCliente = [
     {
         path: "/criaCliente",
         method: "post",
@@ -20,7 +20,7 @@ export const AppRoutes = [
         action: DeletaCliente
     },
     {
-        path: "/buscaPorId/:id",
+        path: "/buscaPorIdC/:id",
         method: "get",
         action: BuscaPorId
     },

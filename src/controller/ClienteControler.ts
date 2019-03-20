@@ -1,9 +1,10 @@
 import { Request, Response } from "express";
-import { getManager, In } from "typeorm";
+import { getManager, In, Connection, getConnection } from "typeorm";
 import { Clientes } from "../entity/Clientes";
 import { } from "express-validator";
 import { MensagemPadrao } from "../models/MensagemPadrao";
-import { validacao } from "../models/Validacao";
+import { validacao } from "../models/ClienteValidacao";
+import { ClienteService } from "../services/ClienteService";
 
 
 export async function CriaCliente(request: Request, response: Response) {
@@ -22,7 +23,7 @@ export async function CriaCliente(request: Request, response: Response) {
     };
 
     //Criando uma entidade(tabela no banco) com o que foi recebido no boddy
-    const dadosCliente = ClientesRepository.create(request.body);
+    const dadosCliente = new ClienteService().CriaCliente(request);
 
     //Salva o cliente recebido
     await ClientesRepository.save(dadosCliente);
@@ -48,10 +49,13 @@ export async function EditaCliente(request: Request, response: Response) {
         return;
     };
 
+
+    const CriaCliente = new ClienteService().CriaCliente(request);
+
     //Encontra o cliente e guarda ele na variavel dadosCliente
     const dadosCliente = await ClientesRepository.findOne(request.params.id);
     //Atualiza o Cliente
-    await ClientesRepository.update({ id: request.params.id }, request.body);
+    await ClientesRepository.update({ id: request.params.id }, CriaCliente);
 
     //Se o cliente não for encontrado irá retornar o erro padrão ao usuário
     if (!dadosCliente) {
@@ -92,7 +96,7 @@ export async function BuscaPorId(request: Request, response: Response) {
     const ClientesRepository = getManager().getRepository(Clientes);
 
     //Procurando no banco de dados e guardando dentro da variavel
-    const dadosCliente = await ClientesRepository.findOne(request.params.id);
+    const dadosCliente = await ClientesRepository.findOne(request.params.id, {relations: ["loja"]});
 
     //Caso ocorra algum erro irá retornar o erro padrão para o usuário
     if (!dadosCliente) {
@@ -111,10 +115,10 @@ export async function BuscaPorNome(request: Request, response: Response) {
     //Cria uma conexão com o banco
     const ClientesRepository = getManager().getRepository(Clientes);
 
+    //Cliente,{ where: { cpf }, relations:["loja"]})
     //Procurando no banco de dados e guardanda dentro da variavel
     const dadosCliente = await ClientesRepository.find({
-        where: {nome: In(request.body.nome)}
-    });
+        where: {nome: In(request.body.nome)}, relations: ["loja"] });
 
     //Caso ocorra algum erro irá retornar o erro padrão para o usuário
     if (!dadosCliente) {
@@ -134,7 +138,8 @@ export async function BuscaPorCPF(request: Request, response: Response) {
     const ClientesRepository = getManager().getRepository(Clientes);
     
     //Procurando no banco de dados e guardando dentro da variavel
-    const dadosCliente = await ClientesRepository.findOne({where:{ cpf: request.params.cpf }});
+    const dadosCliente = await ClientesRepository.findOne({
+        where: { cpf: request.params.cpf }, relations: ["loja"]});
     
     //Caso ocorra algum erro irá retornar o erro padrão para o usuário
     if (!dadosCliente) {
@@ -154,7 +159,8 @@ export async function BuscaPorRG(request: Request, response: Response) {
     const ClientesRepository = getManager().getRepository(Clientes);
     
     //Procurando no banco de dados e guardando dentro da variavel
-    const dadosCliente = await ClientesRepository.findOne({ where: { rg: request.params.rg } });
+    const dadosCliente = await ClientesRepository.findOne({ 
+        where: { rg: request.params.rg }, relations: ["loja"] });
     
     //Caso ocorra algum erro irá retornar o erro padrão para o usuário
     if (!dadosCliente) {
@@ -174,7 +180,8 @@ export async function BuscaPorGenero(request: Request, response: Response) {
     const ClientesRepository = getManager().getRepository(Clientes);
 
     //Procurando no banco de dados e guardanda dentro da variavel
-    const dadosCliente = await ClientesRepository.find({ where: { genero: request.params.genero } });
+    const dadosCliente = await ClientesRepository.find({ 
+        where: { genero: request.params.genero }, relations: ["loja"] });
 
     //Caso ocorra algum erro irá retornar o erro padrão para o usuário
     if (dadosCliente.length == 0) {
@@ -195,7 +202,7 @@ export async function BuscaPorTrabalho(request: Request, response: Response) {
 
     //Procurando no banco de dados e guardanda dentro da variavel
     const dadosCliente = await ClientesRepository.find({
-        where: { localDeTrabalho: In(request.body.localDeTrabalho) }
+        where: { localDeTrabalho: In(request.body.localDeTrabalho)}, relations: ["loja"]
     });
 
     //Caso ocorra algum erro irá retornar o erro padrão para o usuário
@@ -216,7 +223,7 @@ export async function ListarTodos(request: Request, response: Response) {
     const ClientesRepository = getManager().getRepository(Clientes);
 
     //Encontra todas as lojas e guarda na variavel loja
-    const loja = await ClientesRepository.find();
+    const loja = await ClientesRepository.find({relations: ["loja"]});
 
     //Se nenhuma loja for encontrada irá retornar o erro padrão ao usuário
     if (!loja.length) {
