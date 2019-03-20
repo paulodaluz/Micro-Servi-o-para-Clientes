@@ -143,3 +143,65 @@ export async function BuscaPorCPF(request: Request, response: Response) {
     //retorna o cliente com o CPF correspondente
     response.send(dadosCliente);
 };
+
+export async function BuscaPorRG(request: Request, response: Response) {
+
+    //Cria uma conexão com o banco
+    const ClientesRepository = getManager().getRepository(Clientes);
+
+    //Procurando no banco de dados e guardando dentro da variavel
+    const dadosCliente = await ClientesRepository.findOne({ where: { rg: request.params.rg } });
+
+    //Caso ocorra algum erro irá retornar o erro padrão para o usuário
+    if (!dadosCliente) {
+        response.status(404).json(new MensagemPadrao("404", "Nenhum cliente foi encontrado, verifique os dados e tente novamente.").erroRetorno());
+        response.end();
+        return;
+    }
+
+    //retorna o cliente com o RG correspondente
+    response.send(dadosCliente);
+};
+
+export async function BuscaPorTrabalho(request: Request, response: Response) {
+
+    //Cria uma conexão com o banco
+    const ClientesRepository = getManager().getRepository(Clientes);
+
+    //Procurando no banco de dados e guardanda dentro da variavel
+    const dadosCliente = await ClientesRepository.find({
+        where: { localDeTrabalho: In(request.body.localDeTrabalho) }
+    });
+
+    //Caso ocorra algum erro irá retornar o erro padrão para o usuário
+    if (!dadosCliente) {
+        response.status(404).json(new MensagemPadrao("404", "Nenhum cliente foi encontrado, verifique os dados e tente novamente.").erroRetorno());
+        response.end();
+        return;
+    }
+
+    //retorna o(s) clientes que trabalham na loja correspondente
+    response.send(dadosCliente);
+};
+
+export async function ListarTodos(request: Request, response: Response) {
+
+    //Cria uma conexão com o banco
+    const ClientesRepository = getManager().getRepository(Clientes);
+
+    //Encontra todas as lojas e guarda na variavel loja
+    const loja = await ClientesRepository.find();
+
+    //Se nenhuma loja for encontrada irá retornar o erro padrão ao usuário
+    if (!loja.length) {
+        response.status(404).json(new MensagemPadrao("404", "Nenhum cliente foi encontrado, verifique os dados e tente novamente."));
+        response.end();
+        return;
+    }
+    //Retorna todos os clientes para o usuário
+    response.send(loja);
+};
+
+/* export async function Redireciona(request: Request, response: Response) {
+    response.redirect(301, '/api-docs')
+};*/

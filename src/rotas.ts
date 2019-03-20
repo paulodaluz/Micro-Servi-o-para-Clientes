@@ -1,5 +1,5 @@
 import { CriaCliente, EditaCliente, DeletaCliente, BuscaPorId, BuscaPorNome } from "./controller/Controler";
-import { BuscaPorCPF } from "./controller/Controler";
+import { BuscaPorCPF, BuscaPorRG, BuscaPorTrabalho, ListarTodos } from "./controller/Controler";
 
 
 //Todas as rotas da aplicação
@@ -33,15 +33,15 @@ export const AppRoutes = [
         path: "/buscaPorCPF/:cpf",
         method: "get",
         action: BuscaPorCPF
-    }/*,
+    },
     {
         path: "/buscaPorRG/:rg",
         method: "get",
         action: BuscaPorRG
     },
     {
-        path: "/buscaPorTrabalho/:rg",
-        method: "get",
+        path: "/buscaPorTrabalho",
+        method: "post",
         action: BuscaPorTrabalho
     },
     {
@@ -49,7 +49,7 @@ export const AppRoutes = [
         method: "get",
         action: ListarTodos
     },
-    {
+    /*{
         path: "/",
         method: "get",
         action: Redireciona
