@@ -1,4 +1,4 @@
-import { CriaCliente, EditaCliente, DeletaCliente, BuscaPorId } from "./controller/Controler";
+import { CriaCliente, EditaCliente, DeletaCliente, BuscaPorId, BuscaPorNome } from "./controller/Controler";
 import { } from "./controller/Controler";
 
 
@@ -23,12 +23,12 @@ export const AppRoutes = [
         path: "/buscaPorId/:id",
         method: "get",
         action: BuscaPorId
-    }/*,
-    {
-        path: "/buscaPorNome/:nome",
-        method: "get",
-        action: BuscaPorNome
     },
+    {
+        path: "/buscaPorNome",
+        method: "post",
+        action: BuscaPorNome
+    }/*,
     {
         path: "/buscaPorCPF/:cpf",
         method: "get",

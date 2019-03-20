@@ -33,7 +33,6 @@ export async function CriaCliente(request: Request, response: Response) {
 
 };
 
-
 export async function EditaCliente(request: Request, response: Response) {
 
     //Cria uma conexão com o banco
@@ -65,7 +64,6 @@ export async function EditaCliente(request: Request, response: Response) {
     response.send(request.body);
     console.log("Cliente atualizado com sucesso");
 };
-
 
 export async function DeletaCliente(request: Request, response: Response) {
 
@@ -102,6 +100,27 @@ export async function BuscaPorId(request: Request, response: Response) {
         return;
     }
 
-    //retorna a loja com o id correspondente
+    //retorna o cliente com o id correspondente
+    response.send(dadosCliente);
+};
+
+export async function BuscaPorNome(request: Request, response: Response) {
+
+    //Cria uma conexão com o banco
+    const ClientesRepository = getManager().getRepository(Clientes);
+
+    //Procurando no banco de dados e guardanda dentro da variavel
+    const dadosCliente = await ClientesRepository.find({
+        where: {nome: In(request.body.nome)}
+    });
+
+    //Caso ocorra algum erro irá retornar o erro padrão para o usuário
+    if (!dadosCliente) {
+        response.status(404).json(new MensagemPadrao("404", "Nenhum cliente foi encontrado, verifique os dados e tente novamente.").erroRetorno());
+        response.end();
+        return;
+    }
+
+    //retorna o(s) clientes com o nome correspondente
     response.send(dadosCliente);
 };
