@@ -229,7 +229,7 @@ export async function ListarTodos(request: Request, response: Response) {
     console.log("Cliente(s) listado(s) com sucesso");
 };
 
-/* export async function Redireciona(request: Request, response: Response) {
+export async function Redireciona(request: Request, response: Response) {
     response.redirect(301, '/api-docs');
     console.log("Cliente redirecionado com sucesso");
-}; */
+};

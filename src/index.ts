@@ -11,7 +11,7 @@ import {AppRoutes} from "./rotas";
 var expressValidator = require('express-validator');
 
 //Conectando ao Swagger e guardando em uma váriavel
-/* const swaggerDocument = require('../Documentacao/swagger.json'); */
+const swaggerDocument = require('../Documentacao/swagger.json');
 
 //Criando uma conexão com o banco de dados
 createConnection().then(async connection => {
@@ -22,7 +22,7 @@ createConnection().then(async connection => {
     //Validando as informações para criar a loja
     const app = express();
     app.use(bodyParser.json());
-    /* app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument)); */
+    app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
     app.use(expressValidator());
     
     //Registra todas as conexôes apartir de um forEatch
