@@ -29,7 +29,7 @@ export async function CriaCliente(request: Request, response: Response) {
 
     //Retorna o cliente criado ao usuário
     response.send(dadosCliente);
-    console.log("Loja criada com sucesso");
+    console.log("Cliente criado com sucesso");
 
 };
 
@@ -73,7 +73,7 @@ export async function DeletaCliente(request: Request, response: Response) {
     //Acha o cliente no banco de dados e guarda na variavel dados cliente
     const dadosCliente = await ClientesRepository.findOne(request.params.id);
 
-    //Se loja não for encontrada irá retornar o erro padrão ao usuário
+    //Se o cliente não for encontrado irá retornar o erro padrão ao usuário
     if (!dadosCliente) {
         response.status(404).json(new MensagemPadrao("404", "Não foi possivel deletar o cliente, verifique os dados e tente novamente.").erroRetorno());
         response.end();
@@ -122,5 +122,24 @@ export async function BuscaPorNome(request: Request, response: Response) {
     }
 
     //retorna o(s) clientes com o nome correspondente
+    response.send(dadosCliente);
+};
+
+export async function BuscaPorCPF(request: Request, response: Response) {
+
+    //Cria uma conexão com o banco
+    const ClientesRepository = getManager().getRepository(Clientes);
+
+    //Procurando no banco de dados e guardando dentro da variavel
+    const dadosCliente = await ClientesRepository.findOne({where:{ cpf: request.params.cpf }});
+
+    //Caso ocorra algum erro irá retornar o erro padrão para o usuário
+    if (!dadosCliente) {
+        response.status(404).json(new MensagemPadrao("404", "Nenhum cliente foi encontrado, verifique os dados e tente novamente.").erroRetorno());
+        response.end();
+        return;
+    }
+
+    //retorna o cliente com o CPF correspondente
     response.send(dadosCliente);
 };
