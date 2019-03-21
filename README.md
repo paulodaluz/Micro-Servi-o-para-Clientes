@@ -15,7 +15,7 @@ Programa que guarda informações de lojas físicas de um e-commerce e de seus c
  
  Primeiramente você deve ter o node.js e o banco de dados MYSQL.
  Após clonar o [repositório](https://github.com/paulodaluz/Micro-Servicos-para-Clientes.git), você deve abrir a pasta no terminal e executar o comando "npm install" para instalar todos os pacotes(bibliotecas) usadas  na produção da aplicação.
- 
+ Para a aplicação poder funcionar é necessario configurar o banco de dados, e para isso precisamos configurar o arquivoormconfig.json , pois é ele quem faz a comunicação com o Banco de Dados.
  
  
  ## Como Utilizar
