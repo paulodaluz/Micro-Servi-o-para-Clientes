@@ -1,0 +1,869 @@
+{
+  "swagger": "2.0",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "host": "localhost:8085",
+  "basePath": "/nossas-lojas/v3",
+  "info": {
+    "version": "3.0.0",
+    "title": "Nossas Lojas Clients",
+    "description": "API que guarda informações de lojas físicas de um e-commerce e de seus clientes. Guarda informações como id das lojas, nome, endereço, telefone/celular, CNPJ, horário de trabalho, cidade onde se localiza e estado e do cliente guarda informações como id do cliente, nome, CPF, RG, gênero, telefone para contato, endereço, local de trabalho e loja de compra.",
+    "termsOfService": "http://localhost:8085/nossas-lojas/v3/termo-uso",
+    "contact": {
+      "name": "Suporte",
+      "url": "http://localhost:8085/nossas-lojas/clientes/v1/suporte",
+      "email": "suporte@clientsnossaslojas.com"
+    }
+  },
+  "securityDefinitions": {
+    "BasicAuth": {
+      "type": "basic"
+    }
+  },
+  "security": [
+    {
+      "BasicAuth": []
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "tags": [
+    {
+      "name": "Loja"
+    },
+    {
+      "name": "Cliente"
+    }
+  ],
+  "paths": {
+    "/criaLoja": {
+      "post": {
+        "tags": [
+          "Loja"
+        ],
+        "summary": "Cadastra Loja",
+        "description": "Cadastra uma nova Loja",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "nome_loja",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "endereco",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "celular",
+            "type": "integer",
+            "format": "int64",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "cnpj",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "horárioDeTrabalho",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "cidade",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "estado",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Loja criada com sucesso.",
+            "schema": {
+              "$ref": "#/definitions/Loja"
+            }
+          },
+          "400": {
+            "description": "Erros de validação encontrados."
+          },
+          "500": {
+            "description": "Erro interno no servidor."
+          }
+        }
+      }
+    },
+    "/editaLoja/{id}": {
+      "put": {
+        "tags": [
+          "Loja"
+        ],
+        "summary": "Altera a loja.",
+        "description": "Edita uma loja existente.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "format": "int64",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "nome_loja",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "endereco",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "celular",
+            "type": "integer",
+            "format": "int64",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "cnpj",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "horárioDeTrabalho",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "cidade",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "estado",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Loja criada com sucesso",
+            "schema": {
+              "$ref": "#/definitions/Loja"
+            }
+          },
+          "400": {
+            "description": "ID inválido."
+          },
+          "500": {
+            "description": "Erro no servidor."
+          }
+        }
+      }
+    },
+    "/deletaLoja": {
+      "delete": {
+        "tags": [
+          "Loja"
+        ],
+        "summary": "Exclui uma loja",
+        "description": "Exclui uma loja existente.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "format": "int64",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Exclusão efetuada com sucesso."
+          },
+          "400": {
+            "description": "Requisição inválida."
+          },
+          "404": {
+            "description": "ID não encontrado."
+          },
+          "500": {
+            "description": "Erro no servidor."
+          }
+        }
+      }
+    },
+    "/buscaId/{id}": {
+      "get": {
+        "tags": [
+          "Loja"
+        ],
+        "summary": "Busca Loja por ID",
+        "description": "Consulta o saldo da conta do cliente.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "format": "int64",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Consulta a ID efetuada com sucesso.",
+            "schema": {
+              "$ref": "#/definitions/Loja"
+            }
+          },
+          "400": {
+            "description": "Requisição inválida."
+          },
+          "404": {
+            "description": "ID não encontrado."
+          },
+          "500": {
+            "description": "Erro no servidor."
+          }
+        }
+      }
+    },
+    "/buscaEstadoeCidade/{estado}/{cidade}/{cidade}/{cidade}": {
+      "post": {
+        "tags": [
+          "Loja"
+        ],
+        "summary": "Busca loja por Estado e Cidade",
+        "description": "Busca lojas por um estado e em conjunto de cidades.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "estado",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "cidade",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Consulta a estado efetuada com sucesso.",
+            "schema": {
+              "$ref": "#/definitions/Loja"
+            }
+          },
+          "400": {
+            "description": "Requisição inválida."
+          },
+          "404": {
+            "description": "Esse estado ou loja não foi encontrado."
+          },
+          "500": {
+            "description": "Erro no servidor."
+          }
+        }
+      }
+    },
+    "/buscaEstado/{estado}": {
+      "get": {
+        "tags": [
+          "Loja"
+        ],
+        "summary": "Busca loja por Estado",
+        "description": "Listar todas as lojas de um estado.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "estado",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Consulta a estado efetuada com sucesso.",
+            "schema": {
+              "$ref": "#/definitions/Loja"
+            }
+          },
+          "400": {
+            "description": "Requisição inválida."
+          },
+          "404": {
+            "description": "Esse estado ou loja não foi encontrado."
+          },
+          "500": {
+            "description": "Erro no servidor."
+          }
+        }
+      }
+    },
+    "/listaLojas": {
+      "get": {
+        "tags": [
+          "Loja"
+        ],
+        "summary": "Lista todas as lojas cadastradas no banco de dados.",
+        "description": "Listar todas as lojas de um estado.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "estado",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Consulta a estado efetuada com sucesso.",
+            "schema": {
+              "$ref": "#/definitions/Loja"
+            }
+          },
+          "204": {
+            "description": "Nenhuma loja foi cadastrada."
+          },
+          "400": {
+            "description": "Requisição inválida."
+          },
+          "500": {
+            "description": "Erro no servidor."
+          }
+        }
+      }
+    },
+    "/criaCliente": {
+      "post": {
+        "tags": [
+          "Cliente"
+        ],
+        "summary": "Cadastra Loja",
+        "description": "Cadastra uma nova Loja",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Nome",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "CPF",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "RG",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "Gênero",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "Celular",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "Endereço",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "Local de Trabalho",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Cliente criado com sucesso.",
+            "schema": {
+              "$ref": "#/definitions/Cliente"
+            }
+          },
+          "400": {
+            "description": "Erros de validação encontrados."
+          },
+          "500": {
+            "description": "Erro interno no servidor."
+          }
+        }
+      }
+    },
+    "/editaCliente/{id}": {
+      "put": {
+        "tags": [
+          "Cliente"
+        ],
+        "summary": "Altera os dados do cliente.",
+        "description": "Edita os dados de um cliente existente.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "format": "int64",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "Nome",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "CPF",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "RG",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "Gênero",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "Celular",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "Endereço",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "Local de Trabalho",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Cliente editado com sucesso",
+            "schema": {
+              "$ref": "#/definitions/Cliente"
+            }
+          },
+          "400": {
+            "description": "ID inválido."
+          },
+          "500": {
+            "description": "Erro no servidor."
+          }
+        }
+      }
+    },
+    "/deletaCliente/{id}": {
+      "delete": {
+        "tags": [
+          "Cliente"
+        ],
+        "summary": "Exclui um cliente",
+        "description": "Exclui um cliente do banco de dados.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "format": "int64",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Exclusão efetuada com sucesso."
+          },
+          "400": {
+            "description": "Requisição inválida."
+          },
+          "404": {
+            "description": "ID não encontrado."
+          },
+          "500": {
+            "description": "Erro no servidor."
+          }
+        }
+      }
+    },
+    "/buscaPorId/{id}": {
+      "get": {
+        "tags": [
+          "Cliente"
+        ],
+        "summary": "Busca Cliente por ID",
+        "description": "Consulta os dados de um único cliente.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "format": "int64",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Consulta ao ID efetuada com sucesso.",
+            "schema": {
+              "$ref": "#/definitions/Cliente"
+            }
+          },
+          "400": {
+            "description": "Requisição inválida."
+          },
+          "404": {
+            "description": "ID não encontrado."
+          },
+          "500": {
+            "description": "Erro no servidor."
+          }
+        }
+      }
+    },
+    "/buscaPorNome": {
+      "post": {
+        "tags": [
+          "Cliente"
+        ],
+        "summary": "Busca Cliente pelo Nome",
+        "description": "Busca todos os clientes que possuam determinado nome.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Nome",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Consulta a estado efetuada com sucesso.",
+            "schema": {
+              "$ref": "#/definitions/Cliente"
+            }
+          },
+          "400": {
+            "description": "Requisição inválida."
+          },
+          "404": {
+            "description": "Nenhum cliente foi encontrado, verifique os dados e tente novamente."
+          },
+          "500": {
+            "description": "Erro no servidor."
+          }
+        }
+      }
+    },
+    "/buscaPorCPF/{cpf}": {
+      "get": {
+        "tags": [
+          "Cliente"
+        ],
+        "summary": "Busca cliente por CPF",
+        "description": "Busca um cliente pelo CPF.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "cpf",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Consulta a CPF efetuada com sucesso.",
+            "schema": {
+              "$ref": "#/definitions/Cliente"
+            }
+          },
+          "400": {
+            "description": "Requisição inválida."
+          },
+          "404": {
+            "description": "Esse CPF não foi encontrado."
+          },
+          "500": {
+            "description": "Erro no servidor."
+          }
+        }
+      }
+    },
+    "/buscaPorRG/{rg}": {
+      "get": {
+        "tags": [
+          "Cliente"
+        ],
+        "summary": "Busca cliente por RG",
+        "description": "Busca um cliente pelo RG.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "rg",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Consulta a RG efetuada com sucesso.",
+            "schema": {
+              "$ref": "#/definitions/Cliente"
+            }
+          },
+          "400": {
+            "description": "Requisição inválida."
+          },
+          "404": {
+            "description": "Esse RG não foi encontrado."
+          },
+          "500": {
+            "description": "Erro no servidor."
+          }
+        }
+      }
+    },
+    "/buscaPorGenero/{genero}": {
+      "get": {
+        "tags": [
+          "Cliente"
+        ],
+        "summary": "Busca clientes por Gênero",
+        "description": "Busca um cliente pelo gênero.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "genero",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Consulta efetuada com sucesso.",
+            "schema": {
+              "$ref": "#/definitions/Cliente"
+            }
+          },
+          "400": {
+            "description": "Requisição inválida."
+          },
+          "404": {
+            "description": "Nenhum cliente foi encontrado, verifique os dados e tente novamente."
+          },
+          "500": {
+            "description": "Erro no servidor."
+          }
+        }
+      }
+    },
+    "/buscaPorTrabalho": {
+      "post": {
+        "tags": [
+          "Cliente"
+        ],
+        "summary": "Busca clientes por Trabalho",
+        "description": "Busca um cliente pelo local onde trabalha.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "genero",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Consulta efetuada com sucesso.",
+            "schema": {
+              "$ref": "#/definitions/LocalDeTrabalho"
+            }
+          },
+          "400": {
+            "description": "Requisição inválida."
+          },
+          "404": {
+            "description": "Nenhum cliente foi encontrado, verifique os dados e tente novamente."
+          },
+          "500": {
+            "description": "Erro no servidor."
+          }
+        }
+      }
+    },
+    "/listaClientes": {
+      "get": {
+        "tags": [
+          "Cliente"
+        ],
+        "summary": "Lista todos os Clientes",
+        "description": "Listar todas os clientes cadastrados no banco de dados.",
+        "responses": {
+          "200": {
+            "description": "Consulta a estado efetuada com sucesso.",
+            "schema": {
+              "$ref": "#/definitions/Cliente"
+            }
+          },
+          "204": {
+            "description": "Nenhum cliente foi encontrado."
+          },
+          "400": {
+            "description": "Requisição inválida."
+          },
+          "500": {
+            "description": "Erro no servidor."
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Loja": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "example": 234
+        },
+        "nome_loja": {
+          "type": "string",
+          "example": "Doce Mania"
+        },
+        "endereco": {
+          "type": "string",
+          "example": "Av. Brasil Oeste, 623"
+        },
+        "celular": {
+          "type": "number",
+          "minLength": 10,
+          "maxLength": 12,
+          "example": 5433134549
+        },
+        "cnpj": {
+          "type": "string",
+          "minLength": 18,
+          "maxLength": 18,
+          "example": "02.847.070.0001-05"
+        },
+        "horarioDeTrabalho": {
+          "type": "string",
+          "example": "Diariamente das 8hs às 18hs"
+        },
+        "cidade": {
+          "type": "string",
+          "example": "Passo Fundo"
+        },
+        "estado": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 2,
+          "example": "RS"
+        }
+      }
+    },
+    "Cliente": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "example": 234
+        },
+        "nome": {
+          "type": "string",
+          "example": "João da Silva"
+        },
+        "cpf": {
+          "type": "string",
+          "minLength": 14,
+          "maxLength": 14,
+          "example": "008.234.350-67"
+        },
+        "rg": {
+          "type": "string",
+          "minLength": 9,
+          "maxLength": 12,
+          "example": 294665535
+        },
+        "genero": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1,
+          "example": "M"
+        },
+        "celular": {
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 12,
+          "example": 5433134549
+        },
+        "endereco": {
+          "type": "string",
+          "example": "Av. Brasil Oeste, 623"
+        },
+        "localDeTrabalho": {
+          "type": "string",
+          "example": "Compasso"
+        }
+      }
+    },
+    "LocalDeTrabalho": {
+      "type": "object",
+      "properties": {
+        "localDeTrabalho": {
+          "type": "string",
+          "example": "Compasso"
+        }
+      }
+    }
+  }
+}

@@ -94,7 +94,7 @@ export async function BuscaPorId(request: Request, response: Response) {
     const ListaLojasRepository = getManager().getRepository(ListaLojas);
 
     //Procurando no banco de dados e guardando dentro da variavel
-    const loja = await ListaLojasRepository.findOne(request.params.id);
+    const loja = await ListaLojasRepository.findOne(request.params.id, { relations: ["clientes"] });
 
     //Caso ocorra algum erro irá retornar o erro padrão para o usuário
     if (!loja) {
@@ -116,9 +116,7 @@ export async function BuscaPorEstado(request: Request, response: Response) {
     //Procurando no banco de dados e guardando dentro da variavel
     const loja = await ListaLojasRepository.find({
         where: {
-            estado: request.params.estado
-        }
-    });
+            estado: request.params.estado}, relations: ["clientes"]} );
 
     //Se nenhuma loja for encontrada irá retornar o erro padrão ao usuário
     if (!loja.length) {
@@ -142,7 +140,7 @@ export async function BuscaPorCidades(request: Request, response: Response) {
         where: [
             //Pega o estado na URL e as cidades no Body
             {estado: request.params.estado, cidade: In(request.body.cidades) }
-        ]
+        ], relations: ["clientes"]
     });
 
     //Se nenhuma loja for encontrada irá retornar o erro padrão ao usuário
@@ -163,7 +161,7 @@ export async function ListarTodas(request: Request, response: Response) {
     const postRepository = getManager().getRepository(ListaLojas);
 
     //Encontra todas as lojas e guarda na variavel loja
-    const loja = await postRepository.find();
+    const loja = await postRepository.find({relations: ["clientes"]});
 
     //Se nenhuma loja for encontrada irá retornar o erro padrão ao usuário
     if (!loja.length) {
