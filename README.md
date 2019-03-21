@@ -224,20 +224,10 @@ E você irá perceber que retornou no Body todas as lojas cadastradas no banco d
  - Na aba Headers você deverá usar ```Content-Type```;
   
 E você irá perceber que retornou no Body as informações do cliente cujo o ```CPF``` correspondente ao que foi passado.
-  
-  
-  
- ### Busca por CPF do Cliente
  
- Para buscar um cliente pelo ```CPF```, você deverá selecionar o método ```GET``` no ```Postman``` e deverá:
- - Inserir a URL: http://localhost:3000/buscaPorCPF/{cpf} passando o ```CPF``` do cliente que deseja buscar no lugar de ```{cpf}```;
- - Na aba Headers você deverá usar ```Content-Type```;
-  
-E você irá perceber que retornou no Body as informações do cliente cujo o ```CPF``` correspondente ao que foi passado.
   
   
-  
-   ### Busca por RG do Cliente
+ ### Busca por RG do Cliente
    
  Para buscar um cliente pelo ```RG```, você deverá selecionar o método ```GET``` no ```Postman``` e deverá:
  - Inserir a URL: http://localhost:3000/buscaPorRG/{rg} passando o ```RG``` do cliente que deseja buscar no lugar de ```{rg}```;
