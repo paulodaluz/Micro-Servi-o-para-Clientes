@@ -1,6 +1,6 @@
-# Nossas Lojas Clientes
+# Nossas Lojas v3
 
-Programa que guarda informações de lojas físicas de um e-commerce. Guarda informações como id das lojas, nome, endereço, telefone/celular, CNPJ, horário de trabalho, cidade onde se localiza e estado. 
+Programa que guarda informações de lojas físicas de um e-commerce e de seus clientes. Guarda informações como id das lojas, nome, endereço, telefone/celular, CNPJ, horário de trabalho, cidade onde se localiza e estado e do cliente guarda informações como id do cliente, nome, CPF, RG, gênero, telefone para contato, endereço, local de trabalho e loja de compra. 
 
 
 
@@ -94,7 +94,7 @@ Programa que guarda informações de lojas físicas de um e-commerce. Guarda inf
  - Inserir a URL: http://localhost:3000/buscaPorIdC/{id} passando o ```ID``` do cliente que deseja buscar no lugar de ```{id}```;
  - Na aba Headers você deverá usar ```Content-Type```.
  
- E você irá perceber que retornou no Body as informações da loja cujo o ```ID``` correspondente ao que foi passado.
+ E você irá perceber que retornou no Body as informações do cliente cujo o ```ID``` correspondente ao que foi passado.
  
  
  
@@ -114,7 +114,7 @@ Programa que guarda informações de lojas físicas de um e-commerce. Guarda inf
 }
   ```
  
- E você irá perceber que retornou no Body as informações da loja cujo o(s) ```Nome(s)``` correspondente ao que foi passado.
+ E você irá perceber que retornou no Body as informações do cliente cujo o(s) ```Nome(s)``` correspondente ao que foi passado.
  
  
  
@@ -130,7 +130,7 @@ E você irá perceber que retornou no Body as informações do cliente cujo o ``
   
  ### Busca por CPF do Cliente
  
- Para buscar uma loja pelo ```CPF```, você deverá selecionar o método ```GET``` no ```Postman``` e deverá:
+ Para buscar um cliente pelo ```CPF```, você deverá selecionar o método ```GET``` no ```Postman``` e deverá:
  - Inserir a URL: http://localhost:3000/buscaPorCPF/{cpf} passando o ```CPF``` do cliente que deseja buscar no lugar de ```{cpf}```;
  - Na aba Headers você deverá usar ```Content-Type```;
   
@@ -140,7 +140,7 @@ E você irá perceber que retornou no Body as informações do cliente cujo o ``
   
    ### Busca por RG do Cliente
    
- Para buscar uma loja pelo ```RG```, você deverá selecionar o método ```GET``` no ```Postman``` e deverá:
+ Para buscar um cliente pelo ```RG```, você deverá selecionar o método ```GET``` no ```Postman``` e deverá:
  - Inserir a URL: http://localhost:3000/buscaPorRG/{rg} passando o ```RG``` do cliente que deseja buscar no lugar de ```{rg}```;
  - Na aba Headers você deverá usar ```Content-Type```;
   
@@ -150,7 +150,7 @@ E você irá perceber que retornou no Body as informações do cliente cujo o ``
 
  ### Busca por Gênero do Cliente
  
- Para buscar uma loja pelo ```Gênero```, você deverá selecionar o método ```GET``` no ```Postman``` e deverá:
+ Para buscar um cliente pelo ```Gênero```, você deverá selecionar o método ```GET``` no ```Postman``` e deverá:
  - Inserir a URL: http://localhost:3000/buscaPorGenero/{genero} passando o ```GÊNERO "F" ou "M"``` do cliente que deseja buscar no lugar de ```{gênero}```;
  - Na aba Headers você deverá usar ```Content-Type```;
   
@@ -187,7 +187,7 @@ E você irá perceber que retornou no Body todas os clientes cadastradas no banc
    
   Caso queira ver minha ```Collection``` no ```Postman``` de Clientes é só clicar [aqui](https://www.getpostman.com/collections/ada10d13782025ad804a).
   
-  ###Complemento
+  ## ###Complemento
   - Clicando [aqui](https://cloud.docker.com/u/paulera25/repository/docker/paulera25/ecommerceclientes), você poderá ver a imagem do NodeJs no DockerHub sendo executada no servidor.
   - Caso queria ver a documentação deste projeto em uma API no Swagger, basta apenas esta com o servidor rodando e entrar no endereço http://localhost:3000 que você será redirecionado para a documentação ou basta apenas baixa-lá de meu [GitHub](https://github.com/paulodaluz/Micro-Servicos-para-Clientes.git) dentro da pasta ```Documentacao``` e importa-lo no site do [Swagger](https://editor.swagger.io/).
   
