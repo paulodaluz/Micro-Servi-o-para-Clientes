@@ -1,0 +1,4 @@
+Testes como Loja: https://www.getpostman.com/collections/23eb7722c81005614987
+
+
+Testes como Cliente: https://www.getpostman.com/collections/ada10d13782025ad804a

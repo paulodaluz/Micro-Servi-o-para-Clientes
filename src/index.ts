@@ -13,7 +13,7 @@ var expressValidator = require('express-validator');
 
 //Conectando ao Swagger e guardando em uma váriavel
 const swaggerDocumentCliente = require('../Documentacao/swaggerCliente.json');
-const swaggerDocumentLoja = require('../Documentacao/swaggerCliente.json');
+//const swaggerDocumentLoja = require('../Documentacao/swaggerDocumentLoja');
 
 //Criando uma conexão com o banco de dados
 createConnection().then(async connection => {
@@ -25,7 +25,9 @@ createConnection().then(async connection => {
     const app = express();
     app.use(bodyParser.json());
     app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocumentCliente));
+    //app.use('/api-docsloja', swaggerUi.serve, swaggerUi.setup(swaggerDocumentLoja));
     app.use(expressValidator());
+    
     
     //Registra todas as conexôes apartir de um forEatch
     AppRoutesLoja.forEach(route => {
