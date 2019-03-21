@@ -172,7 +172,7 @@ E você irá perceber que retornou no Body as informações do cliente cujo o ``
 "Renner", "Loja A", "Loja B"
 ]
 }
- 
+ ``` 
  E você irá perceber que retornou no Body as informações da(s) loja(s) cujo o(s) ```Local de trabalho(s)``` correspondente ao que foi passado.
  
  
