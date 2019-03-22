@@ -2,7 +2,7 @@ import { CriaCliente, EditaCliente, DeletaCliente, BuscaPorId, BuscaPorNome, Bus
 import { BuscaPorRG, BuscaPorGenero, BuscaPorTrabalho, ListarTodos, Redireciona } from "../controller/ClienteControler";
 
 
-//Todas as rotas da aplicação
+//Todas as rotas da aplicação com seus métodos
 export const AppRoutesCliente = [
     {
         path: "/criaCliente",

@@ -2,7 +2,7 @@ import { CriaLoja, EditaLoja, DeletaLoja, BuscaPorId } from "../controller/LojaC
 import { BuscaPorEstado, BuscaPorCidades, ListarTodas, Redireciona } from "../controller/LojaControler";
 
 
-//Todas as rotas da aplicação
+//Todas as rotas da aplicação com seus métodos
 export const AppRoutesLoja = [
     {
         path: "/criaLoja",

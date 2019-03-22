@@ -33,7 +33,6 @@ export async function CriaLoja(request: Request, response: Response) {
 
 };
 
-
 export async function EditaLoja(request: Request, response: Response) {
 
     //Cria uma conexão com o banco
@@ -66,7 +65,6 @@ export async function EditaLoja(request: Request, response: Response) {
     console.log("Loja atualizada com sucesso");
 };
 
-
 export async function DeletaLoja(request: Request, response: Response) {
 
     //Cria uma conexão com o banco
@@ -87,7 +85,6 @@ export async function DeletaLoja(request: Request, response: Response) {
 
 };
 
-
 export async function BuscaPorId(request: Request, response: Response) {
 
     //Cria uma conexão com o banco
@@ -105,8 +102,8 @@ export async function BuscaPorId(request: Request, response: Response) {
 
     //retorna a loja com o id correspondente
     response.send(loja);
+    console.log("Loja buscada com sucesso");
 };
-
 
 export async function BuscaPorEstado(request: Request, response: Response) {
 
@@ -127,8 +124,8 @@ export async function BuscaPorEstado(request: Request, response: Response) {
 
     //Retorna as lojas do estado solicitado ao usuário
     response.send(loja);
+    console.log("Loja buscada com sucesso");
 };
-
 
 export async function BuscaPorCidades(request: Request, response: Response) {
 
@@ -152,8 +149,8 @@ export async function BuscaPorCidades(request: Request, response: Response) {
 
     // Retorna as lojas ao usuário
     response.send(loja);
+    console.log("Loja buscada com sucesso");
 };
-
 
 export async function ListarTodas(request: Request, response: Response) {
 
@@ -171,10 +168,11 @@ export async function ListarTodas(request: Request, response: Response) {
     }
     //Retorna as lojas para o usuário
     response.send(loja);
+    console.log("Loja listada com sucesso");
 };
 
-
 export async function Redireciona(request: Request, response: Response) {
-    response.redirect(301, '/api-docs')
+    response.redirect(301, '/api-docs');
+    console.log("Cliente redirecionado com sucesso");
 
 };

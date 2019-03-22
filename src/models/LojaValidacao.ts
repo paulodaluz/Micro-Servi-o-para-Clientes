@@ -4,7 +4,7 @@ import { } from "express-validator";
 export class validacao {
 
     validaInformacoes(request: Request) {
-
+    //Validação de dados
     request.assert("nome_loja", "Nome da loja é obrigatório.").notEmpty();
     request.assert("endereco", "Endereço da loja é obrigatório.").notEmpty().isLength({ min: 5 });
     request.assert("celular", "Telefone/Celular da loja é obrigatório e deve ter no minimo 10 caracteres e no máximo 12.").notEmpty().isLength({ min: 10, max: 12 });
@@ -15,10 +15,12 @@ export class validacao {
 
     var erros = request.validationErrors();
 
+    //Se tiver erros vai retorna-los
     if(erros) {
         return erros;
     }
 
+    //Se não tiver nenhum erro não vai retornar nada
     return null;
     }
 }

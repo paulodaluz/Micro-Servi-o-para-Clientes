@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { getManager, In, Connection, getConnection } from "typeorm";
+import { getManager, In} from "typeorm";
 import { Clientes } from "../entity/Clientes";
 import { } from "express-validator";
 import { MensagemPadrao } from "../models/MensagemPadrao";

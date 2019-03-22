@@ -27,7 +27,7 @@ createConnection().then(async connection => {
     app.use(expressValidator());
     
     
-    //Registra todas as conexôes apartir de um forEatch
+    //Registra todas as conexôes da Loja apartir de um forEatch
     AppRoutesLoja.forEach(route => {
         app[route.method](route.path, (request: Request, response: Response, next: Function) => {
             route.action(request, response)
@@ -35,6 +35,8 @@ createConnection().then(async connection => {
                 .catch(err => next(err));
         });
     });
+
+    //Registra todas as conexôes do Cliente apartir de um forEatch
     AppRoutesCliente.forEach(route => {
         app[route.method](route.path, (request: Request, response: Response, next: Function) => {
             route.action(request, response)
