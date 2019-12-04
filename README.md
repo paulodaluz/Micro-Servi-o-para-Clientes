@@ -3,7 +3,7 @@
 Programa que guarda informações de lojas físicas de um e-commerce e de seus clientes. Guarda informações como id das lojas, nome, endereço, telefone/celular, CNPJ, horário de trabalho, cidade onde se localiza e estado e do cliente guarda informações como id do cliente, nome, CPF, RG, gênero, telefone para contato, endereço, local de trabalho e loja de compra. 
 
 # Objetivo do Projeto
-O objetivo do projeto é criar uma api em NodeJS atendendo a todos os requisitos nesse [link](https://github.com/myreli/c_trilhas/blob/master/microservices_node/desafio2/README.md).
+O objetivo do projeto é criar uma api em NodeJS atendendo a todos os requisitos nesse [link](https://github.com/myreli/c_trilhas/blob/master/microservices_node/desafio2/README.md). A criação foi feita com os conhecimentos adquiridos nesta [trilha de conhecimento](https://github.com/myreli/c_trilhas/blob/master/microservices_node/README.md).
 
 # Ferramentas Utilizadas
 
